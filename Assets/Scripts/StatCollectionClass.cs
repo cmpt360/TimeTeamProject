@@ -5,7 +5,7 @@ public class StatCollectionClass : MonoBehaviour {
 	
 	public int health;
 	
-	public int mana;
+	public float mana;
 		
 	public int strength;
 		

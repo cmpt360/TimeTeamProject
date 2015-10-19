@@ -16,7 +16,7 @@ public class PathManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		PathToTarget ("Player");
+		//PathToTarget ("Player");
 	
 	}
 
@@ -53,8 +53,9 @@ public class PathManager : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D collision)
 	{
 		//TODO Tags need to be adjusted for all collidables.
-		if (collision.gameObject.tag == "Wall") {
-			StartCoroutine(waitForMove ());
+		if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Obstacle" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Enemy" ) {
+		StartCoroutine(waitForMove ());
+
 		}
 	}
 

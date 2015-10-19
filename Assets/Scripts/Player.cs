@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 	//public Transform spawnPoint;
 	Rigidbody2D rBody;
 	SpriteRenderer sRender;
+	StatCollectionClass playerStat;
 
 	//private Animator anim;
 
@@ -21,6 +22,10 @@ public class Player : MonoBehaviour
 	void Start () 
 	{
 		rBody = GetComponent<Rigidbody2D> ();
+		playerStat = gameObject.GetComponent<StatCollectionClass> ();
+		playerStat.health = 100;
+		playerStat.mana = 100;
+		playerStat.intellect = 1;
 	}
 	
 	// Update is called once per frame
@@ -67,5 +72,23 @@ public class Player : MonoBehaviour
 			}
 
 		}     
+	}
+
+	
+	void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.tag == "Enemy") {
+			StatCollectionClass enemyStat  = collision.gameObject.GetComponent<StatCollectionClass> ();
+			playerStat.health = playerStat.health - enemyStat.intellect;
+		}
+		if(playerStat.health <= 0)
+		{
+			Reset ();
+		}
+	}
+	
+	// Restart level
+	void Reset(){
+		Application.LoadLevel(Application.loadedLevel);
 	}
 }

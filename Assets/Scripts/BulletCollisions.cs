@@ -3,10 +3,15 @@ using System.Collections;
 
 public class BulletCollisions : MonoBehaviour {
 
+	StatCollectionClass enemyStat;
+	GameObject player;
+	StatCollectionClass playerStat;
 	Rigidbody2D rBody;
 
 	// Use this for initialization
 	void Start () {
+		player = GameObject.FindWithTag ("Player");
+		playerStat = player.GetComponent<StatCollectionClass> ();
 		rBody = GetComponent<Rigidbody2D> ();
 	}
 	
@@ -20,15 +25,21 @@ public class BulletCollisions : MonoBehaviour {
 		
 		// If it collided with an enemy
 		if (tag == "Enemy") {
-			GlobalVariables.kills++;
 
+			//Damage enemy
+			//enemy health -= player attack;
 			// Destroy the enemy
-			Destroy (other.gameObject);
+			enemyStat = other.GetComponent<StatCollectionClass>();
+			enemyStat.health = enemyStat.health - playerStat.intellect;
+			if(enemyStat.health <= 0)
+			{
+				Destroy(other.gameObject);
+			}
 			
 			// And destroy the bullet
 			Destroy(this.gameObject);
 		}
-        if (tag == "Wall")
+        if (tag == "Wall" || tag == "Obstacle")
         {
 			//Destroy the bullet
             Destroy(this.gameObject);
