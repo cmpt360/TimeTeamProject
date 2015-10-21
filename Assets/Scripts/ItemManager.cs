@@ -22,7 +22,7 @@ public class ItemManager : MonoBehaviour {
 			stat.itemCoin = true;
 
 
-			GlobalVariables.CoinNum ++;
+		//	GlobalVariables.CoinNum ++;
 
 			// Destroy the item
 			Destroy(this.gameObject);
