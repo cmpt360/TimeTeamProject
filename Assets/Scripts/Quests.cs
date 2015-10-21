@@ -6,7 +6,7 @@ public class Quests : MonoBehaviour {
 	//pauses game when looking at quests
 	//bool paused = false;
 	
-	//shows quests
+	//variable used to control when quest GUI is shown
 	bool showing = false;
 	
 	//creating GUI window size / position
@@ -21,7 +21,7 @@ public class Quests : MonoBehaviour {
 		private bool has_quest;
 		private bool completed;
 		
-		//so we're able to set values of structs
+		//so we're able to set values of quest struct
 		public quest(string n, string i, bool has, bool complete)
 		{
 			q_name = n;
@@ -60,10 +60,12 @@ public class Quests : MonoBehaviour {
 		}
 	}
 	
-	//Array for quests
+	//Array for all the quests
 	quest[] QL = new quest[4]; 
 	
-	//Array for active quests
+	//Array for all the active quests
+	// a quest is active if its "Has" field is true
+	// and its "Completed" field is false
 	quest[] Active = new quest[4];
 	
 	
@@ -73,7 +75,7 @@ public class Quests : MonoBehaviour {
 	quest Q3 = new quest ("Q3:\t", "laugh at a bad joke", true, true); 
 	quest Q4 = new quest ("Q4:\t", "sing in the shower", true, false);
 	
-	//putting quests into an array list
+	//putting quests into the QL array list 
 	void CreateQuests()
 	{
 		
@@ -84,7 +86,7 @@ public class Quests : MonoBehaviour {
 		
 	}
 	
-	// Use this for initialization
+	// Use this for initialization of the quests
 	void Start () {
 		
 		CreateQuests ();
@@ -97,6 +99,8 @@ public class Quests : MonoBehaviour {
 	
 	void FixedUpdate ()
 	{     
+		//if Q is pressed and the GUI is showing, hide it
+		// else show the GUI
 		if (Input.GetButtonDown ("Q")) {
 			//if showing hide, else show GUI
 			if (showing) {
@@ -105,7 +109,6 @@ public class Quests : MonoBehaviour {
 			} else {
 				showing = true;
 				print ("showing");
-				//paused = false;
 			}
 			
 		}
@@ -113,19 +116,17 @@ public class Quests : MonoBehaviour {
 	
 	void OnGUI ()
 	{
+		//if showing is true, show the quest GUI window
 		if (showing)
 		{
 			winPos = GUI.Window(2, winPos, QuestWindow, "Quest Journal");
-			
-			// works to pause the game but doesn't start again
-			//Time.timeScale = 0.0f;
 		}
 	}
 	
 	void QuestWindow(int ID)
 	{
+		//adds the active quests to the GUI
 		GUI.DragWindow (new Rect (0, 10, 1000, 200));
-		//GUILayout.Box("Quests: ");
 		for (int i =0; i < QL.Length; i++) {
 			if ((QL [i].Has) && !QL [i].Complete) {
 				GUILayout.Box ((QL [i]).Name + " " + (QL [i]).Info);
