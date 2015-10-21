@@ -3,7 +3,10 @@ using System.Collections;
 
 public class Quests : MonoBehaviour {
 
-	//controls when the quest GUI is showing
+	//pauses game when looking at quests
+	//bool paused = false;
+	
+	//shows quests
 	bool showing = false;
 	
 	//creating GUI window size / position
@@ -18,7 +21,7 @@ public class Quests : MonoBehaviour {
 		private bool has_quest;
 		private bool completed;
 		
-		//so we're able to set values of struct quest
+		//so we're able to set values of structs
 		public quest(string n, string i, bool has, bool complete)
 		{
 			q_name = n;
@@ -57,12 +60,10 @@ public class Quests : MonoBehaviour {
 		}
 	}
 	
-	//Array for all the quests 
+	//Array for quests
 	quest[] QL = new quest[4]; 
 	
 	//Array for active quests
-	//a quest is active if it's "Has" field is set to true 
-	//and its "Completed" field is set to false
 	quest[] Active = new quest[4];
 	
 	
@@ -72,7 +73,7 @@ public class Quests : MonoBehaviour {
 	quest Q3 = new quest ("Q3:\t", "laugh at a bad joke", true, true); 
 	quest Q4 = new quest ("Q4:\t", "sing in the shower", true, false);
 	
-	//putting quests into the QL array list
+	//putting quests into an array list
 	void CreateQuests()
 	{
 		
@@ -83,7 +84,7 @@ public class Quests : MonoBehaviour {
 		
 	}
 	
-	// Use this for quest initialization
+	// Use this for initialization
 	void Start () {
 		
 		CreateQuests ();
@@ -96,15 +97,15 @@ public class Quests : MonoBehaviour {
 	
 	void FixedUpdate ()
 	{     
-		//If the user presses Q, a GUI with all the active quests will show up
 		if (Input.GetButtonDown ("Q")) {
-			//if GUI is showing then hide it, else if it's hidden show GUI
+			//if showing hide, else show GUI
 			if (showing) {
 				showing = false;
 				print ("not showing");
 			} else {
 				showing = true;
 				print ("showing");
+				//paused = false;
 			}
 			
 		}
@@ -112,7 +113,6 @@ public class Quests : MonoBehaviour {
 	
 	void OnGUI ()
 	{
-		//if showing is true, show quest GUI
 		if (showing)
 		{
 			winPos = GUI.Window(2, winPos, QuestWindow, "Quest Journal");
@@ -122,7 +122,6 @@ public class Quests : MonoBehaviour {
 		}
 	}
 	
-	//adds the active quests to the GUI and displays them
 	void QuestWindow(int ID)
 	{
 		GUI.DragWindow (new Rect (0, 10, 1000, 200));

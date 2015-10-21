@@ -26,22 +26,24 @@ public class BulletCollisions : MonoBehaviour {
 		// If it collided with an enemy
 		if (tag == "Enemy") {
 
-			// Get enemy stats so we can adjust them
+			//Damage enemy
+			//enemy health -= player attack;
+			// Destroy the enemy
 			enemyStat = other.GetComponent<StatCollectionClass>();
-			// enemy health -= player attack;
 			enemyStat.health = enemyStat.health - playerStat.intellect;
-			if(enemyStat.health <= 0){
-				// If enemy has no health, destroy it
+			if(enemyStat.health <= 0)
+			{
 				Destroy(other.gameObject);
 			}
 			
 			// And destroy the bullet
 			Destroy(this.gameObject);
 		}
-        	if (tag == "Wall" || tag == "Obstacle"){
-			// Destroy the bullet
-			Destroy(this.gameObject);
-        	}
+        if (tag == "Wall" || tag == "Obstacle")
+        {
+			//Destroy the bullet
+            Destroy(this.gameObject);
+        }
 	}
 }
 

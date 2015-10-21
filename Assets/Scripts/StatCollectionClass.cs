@@ -2,18 +2,37 @@
 using System.Collections;
 
 public class StatCollectionClass : MonoBehaviour {
-	
-	public int health;
-	
+
+
+	public float health;
+			
+		
+
 	public float mana;
-		
+			
+
 	public int strength;
-		
+			
+
 	public int intellect;
-		
+			
+
 	public int xp;
-		
+			
+
 	public int playerLevel;
+
+	public bool itemCoin;
+
+
+	public bool EnergyBallUnlocked;
+
+	public float EnergyBalldamage;
+
+	public bool FireBreathUnlocked;
+
+	public bool SunStrikeUnlocked;
+
 
 }
 

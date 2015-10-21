@@ -13,18 +13,18 @@ public class ItemManager : MonoBehaviour {
 
 
 		
-		// If it collided with coin
+		// If it collided with item1
 		if (other.tag == "Player") {
 
 
 
-			// set coin unlocked
+			// set item1 unlocked
 			stat.itemCoin = true;
 
-			// increase coin count
+
 			GlobalVariables.CoinNum ++;
 
-			// Destroy the coin
+			// Destroy the item
 			Destroy(this.gameObject);
 
 			

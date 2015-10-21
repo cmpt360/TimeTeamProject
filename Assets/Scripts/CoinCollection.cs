@@ -4,7 +4,6 @@ using System.Collections;
 
 public class CoinCollection : MonoBehaviour {
 
-
 	Text txt;
 
 	void Start () {
@@ -14,7 +13,7 @@ public class CoinCollection : MonoBehaviour {
 
 	void Update () {
 		
-		//change the value with the CoinNum
+
 		txt.text = "Coins: " + GlobalVariables.CoinNum+"/3";
 	}
 }

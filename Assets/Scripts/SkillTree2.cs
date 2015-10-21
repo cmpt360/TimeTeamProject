@@ -3,22 +3,23 @@ using System.Collections;
 
 public class SkillTree2: MonoBehaviour {
 
-	public Player player;
-	public bool EnergyBallUnlocked = false;
+	// connect skilltree to stat class
+	public StatCollectionClass stat;
+
 	public int maxEnergyBallLv=5;
 	public int EnergyBallPrice=30;
 	public float EnergyBallMpCost = 5f;
-	public float EnergyBalldamage = 50f;
+
 	int i =0;
 
-	public bool FireBreathUnlocked = false;
+
 	public int maxFireBreathLv=5;
 	public int FireBreathPrice=60;
 	public float FireBreathMpCost = 10f;
 	public float FireBreathDamage = 120f;
 	int j =0;
 
-	public bool SunStrikeUnlocked = false;
+
 	public int maxSunStrikeLv=5;
 	public int SunStrikePrice=120;
 	public float SunStrikeMpCost = 20f;
@@ -31,18 +32,18 @@ public class SkillTree2: MonoBehaviour {
 		
 			if (i < maxEnergyBallLv) {
 
-				if (player.xp >= EnergyBallPrice) {
-					EnergyBallUnlocked = true;
-					player.xp -= EnergyBallPrice;
+				if (stat.xp >= EnergyBallPrice) {
+					stat.EnergyBallUnlocked = true;
+					stat.xp -= EnergyBallPrice;
 					i++;
 					EnergyBallPrice *=i+1;
 					EnergyBallMpCost *=i;
-					EnergyBalldamage *=i;
+					stat.EnergyBalldamage+=10f;
 
 
 
 
-				} else if (player.xp < EnergyBallPrice) {
+				} else if (stat.xp < EnergyBallPrice) {
 					Debug.Log ("not enouph xp");
 				}
 			} else {
@@ -55,9 +56,9 @@ public class SkillTree2: MonoBehaviour {
 			if (i == maxEnergyBallLv) {
 				if (j < maxFireBreathLv) {
 				
-					if (player.xp >= FireBreathPrice) {
-						FireBreathUnlocked = true;
-						player.xp -= FireBreathPrice;
+					if (stat.xp >= FireBreathPrice) {
+						stat.FireBreathUnlocked = true;
+						stat.xp -= FireBreathPrice;
 						j++;
 						FireBreathPrice *= j+1;
 						FireBreathMpCost *=j;
@@ -65,7 +66,7 @@ public class SkillTree2: MonoBehaviour {
 
 
 					
-					} else if (player.xp < FireBreathPrice) {
+					} else if (stat.xp < FireBreathPrice) {
 						Debug.Log ("not enouph xp");
 					}
 				} else {
@@ -86,9 +87,9 @@ public class SkillTree2: MonoBehaviour {
 
 				if (k < maxSunStrikeLv) {
 				
-					if (player.xp >= SunStrikePrice) {
-						SunStrikeUnlocked = true;
-						player.xp -= SunStrikePrice;
+					if (stat.xp >= SunStrikePrice) {
+						stat.SunStrikeUnlocked = true;
+						stat.xp -= SunStrikePrice;
 						k++;
 						SunStrikePrice *= k+1;
 						SunStrikeMpCost *=k;
@@ -96,7 +97,7 @@ public class SkillTree2: MonoBehaviour {
 
 
 					
-					} else if (player.xp < SunStrikePrice) {
+					} else if (stat.xp < SunStrikePrice) {
 						Debug.Log ("not enouph xp");
 					}
 				} else {
