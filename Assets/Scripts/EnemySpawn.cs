@@ -8,8 +8,8 @@ public class EnemySpawn : MonoBehaviour {
 	public float dTimerReduce = 0.1f;
 	public GameObject[] spawnLocations;
 	public GameObject spawnObject;
-	public int maxNumGroups;
-	private int groupWeight = 30;	// Overall weighting for a group of enemies
+	public int maxNumGroups;		// Maximum number of group of enemies to spawn in the area
+	private int groupWeight = 30;		// Overall weighting for a group of enemies
 	private int minInGroup = 2;		// Minimum number of enemies that can spawn in a group
 	private int maxInGroup = 5;		// Maximum number of enemies that can spawn in a group
 	private float countdown;
@@ -30,7 +30,6 @@ public class EnemySpawn : MonoBehaviour {
 			else{*/
 				// Determine number of enemies to spawn and assign each a number of stat points
 				numEnemies = Random.Range (minInGroup, maxInGroup);
-				print (numEnemies);
 				statPerEnemy = groupWeight / numEnemies;
 
 				for (int i = 0; i < numEnemies; i++)
