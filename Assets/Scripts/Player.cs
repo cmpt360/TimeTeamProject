@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		// Movement controls use arrow keys
 		if (Input.GetKey(KeyCode.UpArrow))
 		{
 			transform.Translate (Vector3.up * speed * Time.deltaTime);
@@ -48,12 +49,13 @@ public class Player : MonoBehaviour
 			transform.Translate (Vector3.right * speed * Time.deltaTime);
 		}
 
-
+		// Add a delay between shots
 		if (shotTimer > 0f)
 		{
 			shotTimer -= Time.deltaTime;
 		}
-
+		
+		// Pick the direction to fire the shot based on the character's rotation
 		Vector2 dirVector = new Vector2 (Mathf.Cos (rBody.rotation * Mathf.Deg2Rad), Mathf.Sin (rBody.rotation * Mathf.Deg2Rad));
 
 		// If player firing and timer not on cooldown
@@ -77,10 +79,12 @@ public class Player : MonoBehaviour
 	
 	void OnCollisionEnter2D(Collision2D collision)
 	{
+		// If player collides with an enemy they take damage
 		if (collision.gameObject.tag == "Enemy") {
 			StatCollectionClass enemyStat  = collision.gameObject.GetComponent<StatCollectionClass> ();
 			playerStat.health = playerStat.health - enemyStat.intellect;
 		}
+		// If player is at 0 health, reset the scene
 		if(playerStat.health <= 0)
 		{
 			Reset ();
