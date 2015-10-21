@@ -143,7 +143,7 @@ public class AIManager : MonoBehaviour {
 			if(diff < 0){
 				//print ("We have an abundance of: " + diff.ToString () + " stats.");	
 				for (int m = 0; m > diff; m--) {
-					sumR = sumR = sumArray (split);
+					sumR = sumArray (split);
 					//print ("The sum is " + sumR.ToString () + " It is supposed to be " + rWeight.ToString ());
 					if (sumR == rWeight) {
 						break;
@@ -160,7 +160,7 @@ public class AIManager : MonoBehaviour {
 			else if(diff > 0){
 				//print ("We are missing: " + diff.ToString () + " stats.");
 				for (int m = 0; m < diff; m++) {
-					sumR = sumR = sumArray (split);
+					sumR = sumArray (split);
 					//print ("The sum is " + sumR.ToString () + " It is supposed to be " + rWeight.ToString ());
 					if (sumR == rWeight) {
 						break;
