@@ -12,10 +12,8 @@ public class Enemy : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//player = GameObject.FindWithTag("Player");
 		rBody = GetComponent<Rigidbody2D> ();
 		enemyStat = gameObject.GetComponent<StatCollectionClass> ();
-		//playerStat = player.GetComponent<StatCollectionClass> ();
 	}
 	
 	// Update is called once per frame
