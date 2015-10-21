@@ -26,9 +26,9 @@ public class BulletCollisions : MonoBehaviour {
 		// If it collided with an enemy
 		if (tag == "Enemy") {
 
-			//Damage enemy
-			//enemy health -= player attack;
-			// Destroy the enemy
+			// Deal damage to the enemy
+			// enemy health -= player attack
+			// if enemy has no health destroy the object
 			enemyStat = other.GetComponent<StatCollectionClass>();
 			enemyStat.health = enemyStat.health - playerStat.intellect;
 			if(enemyStat.health <= 0)
