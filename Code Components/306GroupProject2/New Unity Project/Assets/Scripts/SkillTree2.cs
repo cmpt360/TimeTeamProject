@@ -6,39 +6,47 @@ public class SkillTree2: MonoBehaviour {
 	// connect skilltree to stat class
 	public StatCollectionClass stat;
 
+	//skill level
 	public int maxEnergyBallLv=5;
+	//xp cost
 	public int EnergyBallPrice=30;
+	//mana cost
 	public float EnergyBallMpCost = 5f;
-	public float EnergyBalldamage = 50f;
+	//use for skill grow
 	int i =0;
 
-
+	//sample of second skill
 	public int maxFireBreathLv=5;
 	public int FireBreathPrice=60;
 	public float FireBreathMpCost = 10f;
 	public float FireBreathDamage = 120f;
 	int j =0;
 
-
+	//sample of third skill
 	public int maxSunStrikeLv=5;
 	public int SunStrikePrice=120;
 	public float SunStrikeMpCost = 20f;
 	public float SunStrikeDamage = 300f;
 	int k =0;
 
+	// create GUI Button on panel
 	void OnGUI () {
-
+		//set the location of button
 		if (GUI.Button (new Rect (400, 50, 120, 30), "Energy Ball Lv" + i)) {
-		
+		//skill level must lower than max level
 			if (i < maxEnergyBallLv) {
-
+				// player's xp value max higher than skill xp cost
 				if (stat.xp >= EnergyBallPrice) {
+					//set skill actived
 					stat.EnergyBallUnlocked = true;
+					//cost the player's xp by skill xp cost value
 					stat.xp -= EnergyBallPrice;
+					//level up
 					i++;
+					//each skill value increase with the level
 					EnergyBallPrice *=i+1;
 					EnergyBallMpCost *=i;
-					EnergyBalldamage *=i;
+					stat.EnergyBalldamage+=10f;
 
 
 
@@ -51,7 +59,7 @@ public class SkillTree2: MonoBehaviour {
 			}
 	
 		}
-
+		//same as 1st skill
 		if (GUI.Button (new Rect (400, 150, 120, 30), "Fire Breath Lv" + j)) {
 			if (i == maxEnergyBallLv) {
 				if (j < maxFireBreathLv) {
@@ -80,7 +88,7 @@ public class SkillTree2: MonoBehaviour {
 			}
 		}
 
-
+		//same as 1st skill
 		if (GUI.Button (new Rect (400, 250, 120, 30), "Sun Strike Lv" + k)) {
 
 			if (j == maxFireBreathLv) {

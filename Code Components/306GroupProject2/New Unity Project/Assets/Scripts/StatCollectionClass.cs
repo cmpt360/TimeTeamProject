@@ -25,8 +25,9 @@ public class StatCollectionClass : MonoBehaviour {
 	public bool itemCoin;
 
 
-
 	public bool EnergyBallUnlocked;
+
+	public float EnergyBalldamage;
 
 	public bool FireBreathUnlocked;
 
