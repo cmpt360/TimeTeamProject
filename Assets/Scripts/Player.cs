@@ -29,26 +29,35 @@ public class Player : MonoBehaviour
 	}
 	
 	// Update is called once per frame
+	// Add face direction code
 	void Update () 
 	{
-		// Movement controls use arrow keys
 		if (Input.GetKey(KeyCode.UpArrow))
 		{
-			transform.Translate (Vector3.up * speed * Time.deltaTime);
+			//since change the face direction all move should be face direction(just x)
+			transform.Translate (Vector3.right * speed * Time.deltaTime);
+			//change the rotation z to 90(face up)
+			transform.rotation = Quaternion.Euler(0,0,90);
 		}
 		if (Input.GetKey(KeyCode.DownArrow))
 		{
-			transform.Translate (Vector3.down * speed * Time.deltaTime);
+			transform.Translate (Vector3.right * speed * Time.deltaTime);
+			//change the rotation z to -90(face down)
+			transform.rotation = Quaternion.Euler(0,0,-90);
 		}
 		if (Input.GetKey(KeyCode.LeftArrow))
 		{
-			transform.Translate (Vector3.left * speed * Time.deltaTime);
+			transform.Translate (Vector3.right * speed * Time.deltaTime);
+			//change the rotation z to 90(face left)
+			transform.rotation = Quaternion.Euler(0,0,180);
 		}
 		if (Input.GetKey(KeyCode.RightArrow))
 		{
 			transform.Translate (Vector3.right * speed * Time.deltaTime);
+			//change the rotation z to 90(face right)
+			transform.rotation = Quaternion.Euler(0,0,0);
 		}
-
+		
 		// Add a delay between shots
 		if (shotTimer > 0f)
 		{
