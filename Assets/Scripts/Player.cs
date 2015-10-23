@@ -30,6 +30,9 @@ public class Player : MonoBehaviour
 	
 	// Update is called once per frame
 	// Add face direction code
+	// FIXME
+	// Player should not be able to move at an angle.
+	// Player should have smooth turning. (Animations and/or blend?)
 	void Update () 
 	{
 		if (Input.GetKey(KeyCode.UpArrow))
