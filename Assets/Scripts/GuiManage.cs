@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class GuiManage : MonoBehaviour {
@@ -28,24 +28,21 @@ public class GuiManage : MonoBehaviour {
 		
 		//AdjustCurrentHealth(0);
 	//	AdjustCurrentMana(0);
-		//in here mana will increase two every second 
-       
+		
 		if(playerStat.mana >= 0 )
 		{
 			playerStat.mana += Time.deltaTime * 2.0f;
 		}
-        // to make sure mana wont be more than 100
-        if (playerStat.mana >= maxMana)
+		
+		if(playerStat.mana >= maxMana)
 		{
 			playerStat.mana = maxMana;
 			
 		}
-        // to make sure mana wont be less than 0
 		if (playerStat.mana <= 0)
 		{
 			playerStat.mana=0;
 		}
-        //if press 'f' key mana will decrease 20
 		if(Input.GetKeyDown("f"))
 		{
 			AdjustCurrentMana(-20);
@@ -85,24 +82,21 @@ public class GuiManage : MonoBehaviour {
     }
     */
 	}
-
-	//to generate the box for hp and mana stam may be for future.
+	
 	void OnGUI()
 	{
-        //set up the layer of the size of the box
 		GUI.Box(new Rect(5, 30, 40, 20),"HP");
 		GUI.Box(new Rect(5, 50, 40, 20),"Mana");
 		// GUI.Box(new Rect(5, 70, 40, 20),"Stam");
 		
-		//set up the bar and their length of the box
+		
 		GUI.Box(new Rect(45,30,barLength,20),playerStat.health.ToString("0")+"/"+maxHealth);
 		GUI.Box(new Rect(45,50,barLength,20),playerStat.mana.ToString("0")+"/"+maxMana);
 		// GUI.Box(new Rect(45,70,barLength,20),currentStamin.ToString("0")+"/"+maxStamina);
 		
 	}
 	
-	// to make change for the hp and make sure hp wont less than 0 if we adjust the health
-    //update the number on the hp bar
+	
 	void AdjustCurrentHealth (int adj)
 	{
 		playerStat.health += adj;
@@ -115,11 +109,10 @@ public class GuiManage : MonoBehaviour {
 			playerStat.health=0;
 		}
 	}
-
-
-    // to make change for the mana
-    //update the number on the mana bar
-    void AdjustCurrentMana (int adj)
+	
+	
+	
+	void AdjustCurrentMana (int adj)
 	{
 		playerStat.mana += adj;
 	}
