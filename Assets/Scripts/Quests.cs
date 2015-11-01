@@ -97,30 +97,15 @@ public class Quests : MonoBehaviour {
 		
 	}
 	
-	void FixedUpdate ()
-	{     
-		//if Q is pressed and the GUI is showing, hide it
-		// else show the GUI
-		if (Input.GetButtonDown ("Q")) {
-			//if showing hide, else show GUI
-			if (showing) {
-				showing = false;
-				print ("not showing");
-			} else {
-				showing = true;
-				print ("showing");
-			}
-			
-		}
-	}
+
 	
 	void OnGUI ()
 	{
 		//if showing is true, show the quest GUI window
-		if (showing)
-		{
+
+
 			winPos = GUI.Window(2, winPos, QuestWindow, "Quest Journal");
-		}
+
 	}
 	
 	void QuestWindow(int ID)
