@@ -29,31 +29,45 @@ public class Player : MonoBehaviour
 	}
 	
 	// Update is called once per frame
+	// Add face direction code
+	// FIXME
+	// Player should not be able to move at an angle.
+	// Player should have smooth turning. (Animations and/or blend?)
 	void Update () 
 	{
 		if (Input.GetKey(KeyCode.UpArrow))
 		{
-			transform.Translate (Vector3.up * speed * Time.deltaTime);
+			//since change the face direction all move should be face direction(just x)
+			transform.Translate (Vector3.right * speed * Time.deltaTime);
+			//change the rotation z to 90(face up)
+			transform.rotation = Quaternion.Euler(0,0,90);
 		}
 		if (Input.GetKey(KeyCode.DownArrow))
 		{
-			transform.Translate (Vector3.down * speed * Time.deltaTime);
+			transform.Translate (Vector3.right * speed * Time.deltaTime);
+			//change the rotation z to -90(face down)
+			transform.rotation = Quaternion.Euler(0,0,-90);
 		}
 		if (Input.GetKey(KeyCode.LeftArrow))
 		{
-			transform.Translate (Vector3.left * speed * Time.deltaTime);
+			transform.Translate (Vector3.right * speed * Time.deltaTime);
+			//change the rotation z to 90(face left)
+			transform.rotation = Quaternion.Euler(0,0,180);
 		}
 		if (Input.GetKey(KeyCode.RightArrow))
 		{
 			transform.Translate (Vector3.right * speed * Time.deltaTime);
+			//change the rotation z to 90(face right)
+			transform.rotation = Quaternion.Euler(0,0,0);
 		}
-
-
+		
+		// Add a delay between shots
 		if (shotTimer > 0f)
 		{
 			shotTimer -= Time.deltaTime;
 		}
-
+		
+		// Pick the direction to fire the shot based on the character's rotation
 		Vector2 dirVector = new Vector2 (Mathf.Cos (rBody.rotation * Mathf.Deg2Rad), Mathf.Sin (rBody.rotation * Mathf.Deg2Rad));
 
 		// If player firing and timer not on cooldown
@@ -77,10 +91,12 @@ public class Player : MonoBehaviour
 	
 	void OnCollisionEnter2D(Collision2D collision)
 	{
+		// If player collides with an enemy they take damage
 		if (collision.gameObject.tag == "Enemy") {
 			StatCollectionClass enemyStat  = collision.gameObject.GetComponent<StatCollectionClass> ();
 			playerStat.health = playerStat.health - enemyStat.intellect;
 		}
+		// If player is at 0 health, reset the scene
 		if(playerStat.health <= 0)
 		{
 			Reset ();

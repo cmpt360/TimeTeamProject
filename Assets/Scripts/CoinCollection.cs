@@ -14,6 +14,6 @@ public class CoinCollection : MonoBehaviour {
 	void Update () {
 		
 
-		txt.text = "Coins: " + GlobalVariables.CoinNum+"/3";
+	//	txt.text = "Coins: " + GlobalVariables.CoinNum+"/3";
 	}
 }
