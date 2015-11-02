@@ -7,19 +7,21 @@ public class Player : MonoBehaviour
 	Rigidbody2D rBody;
 	SpriteRenderer sRender;
 	StatCollectionClass playerStat;
+   
 
-	//private Animator anim;
+    //private Animator anim;
 
-	public int xp;
+    public int xp;
 
 	public float speed = 8f;
 	public GameObject projectile;
 	public float shotRecharge = 1f;
 	public float shotSpeed = 8f;
 	private float shotTimer = 0f;
-	
-	// Use this for initialization
-	void Start () 
+   // public GameObject deadsound;
+
+    // Use this for initialization
+    void Start () 
 	{
 		rBody = GetComponent<Rigidbody2D> ();
 		playerStat = gameObject.GetComponent<StatCollectionClass> ();
@@ -99,7 +101,9 @@ public class Player : MonoBehaviour
 		
 		if(playerStat.health <= 0)
 		{
+
             //Reset ();
+            //Instantiate(deadsound);
             Destroy(gameObject);
         }
 	}
