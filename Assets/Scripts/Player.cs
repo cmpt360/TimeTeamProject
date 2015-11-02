@@ -96,11 +96,12 @@ public class Player : MonoBehaviour
 			StatCollectionClass enemyStat  = collision.gameObject.GetComponent<StatCollectionClass> ();
 			playerStat.health = playerStat.health - enemyStat.intellect;
 		}
-		// If player is at 0 health, reset the scene
+		
 		if(playerStat.health <= 0)
 		{
-			Reset ();
-		}
+            //Reset ();
+            Destroy(gameObject);
+        }
 	}
 	
 	// Restart level
